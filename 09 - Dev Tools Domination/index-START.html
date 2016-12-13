@@ -18,28 +18,56 @@
     }
 
     // Regular
+    console.log('thing');
 
     // Interpolated
-
+    console.log('hey, I am a %s', 'interpolated thing');
+    let variable = 'var interpolated var thing';
+    console.log(`and so am I ${variable}`);
     // Styled
+    console.log('%c this is some text', 'font-size: 20px; color: blue;');
 
     // warning!
+    console.warn('a thing happened!');
 
     // Error :|
+    console.error('AHHH!');
 
     // Info
+    console.info('this is a fun fact!');
 
     // Testing
+    const p = document.querySelector('p');
+    // console.assert(p.classList.contains('imaginaryClass'), 'you are hallucinating!');
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
-
+    console.log(p);
+    console.dir(p);
+    
     // Grouping together
+    dogs.forEach(dog => {
+      // console.group(`${dog.name}`);
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} old.`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old.`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    // console.count(); tells you how many instances of a sting, etc
 
     // timing
+    console.time('get some stuff');
+    fetch('https://api.github.com/users/ancyentmariner')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('get some stuff');
+        console.log(data);
+      });
 
   </script>
 </body>

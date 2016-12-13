@@ -104,6 +104,20 @@
   </div>
 
 <script>
+  const inputs = document.querySelectorAll('input');
+  // listen to selected inputs
+  // listen for keydown shift key code
+  // look up indexes of the two inputs
+  // make a new array of the selected inputs and all in between
+
+  // const listenToInputs = [...inputs].forEach(input => input.addEventListener('select', ));
+
+  function selectInputs(e) {
+    if (!e.shiftKey) return;
+    console.log(e);
+  };
+
+  window.addEventListener('keydown', selectInputs);
 </script>
 </body>
 </html>
