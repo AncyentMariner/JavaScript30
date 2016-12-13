@@ -104,20 +104,47 @@
   </div>
 
 <script>
-  const inputs = document.querySelectorAll('input');
-  // listen to selected inputs
-  // listen for keydown shift key code
-  // look up indexes of the two inputs
-  // make a new array of the selected inputs and all in between
+  // const inputs = document.querySelectorAll('.inbox input[type="checkbox"]');
+  // let lastChecked;
+  // inputs.forEach(input => input.addEventListener('click', listenToInputs));
+  //
+  // function listenToInputs(e) {
+  //   let inBetween = false;
+  //   if (e.shiftKey && this.checked) {
+  //     inputs.forEach(box => {
+  //       if (box === this || box === lastChecked) {
+  //         inBetween = !inBetween;
+  //       }
+  //       if (inBetween) {
+  //         box.checked = true;
+  //       }
+  //     });
+  //   }
+  //   lastChecked = this;
+  // };
 
-  // const listenToInputs = [...inputs].forEach(input => input.addEventListener('select', ));
+  const inputs = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+  let lastChecked;
+  inputs.forEach(input => input.addEventListener('click', listenToInputs));
 
-  function selectInputs(e) {
-    if (!e.shiftKey) return;
-    console.log(e);
+  function listenToInputs(e) {
+    let inBetween = false;
+    if (e.shiftKey && this.checked) {
+      inputs.forEach(box => {
+        let boxIndex = inputs.indexOf(box);
+        let firstThing = inputs.indexOf(this);
+        let lastThing = inputs.indexOf(lastChecked);
+
+        if (lastThing === boxIndex || firstThing === boxIndex) {
+          inBetween = !inBetween;
+        }
+        if (inBetween) {
+          box.checked = true;
+        }
+      });
+    }
+    lastChecked = this;
   };
-
-  window.addEventListener('keydown', selectInputs);
 </script>
 </body>
 </html>
