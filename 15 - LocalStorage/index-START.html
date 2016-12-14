@@ -27,12 +27,49 @@
 
 <script>
   const addItems = document.querySelector('.add-items');
-  const itemsList = document.querySelector('.plates');
-  const items = [];
+  const platesList = document.querySelector('.plates');
+  const plates = JSON.parse(localStorage.getItem('plates')) || [];
+
+  function addPlate(e) {
+    e.preventDefault();
+    const text = (this.querySelector('[name="item"]')).value;
+    const plate = {
+      text: text,
+      done: false
+    };
+    plates.push(plate);
+    localStorage.setItem('plates', JSON.stringify(plates));
+    populateMenu(plates, platesList);
+    this.reset();
+  }
+
+  function populateMenu(plates = [], platesList) {
+    platesList.innerHTML = plates.map((plate, i) => {
+      return `
+        <li>
+          <input type="checkbox" data-index="${i}" id=plate${i} ${plate.done ? 'checked' : ''}/>
+          <label for="plate${i}">${plate.text}</label>
+        </li>
+      `;
+    }).join('');
+  }
+
+  function toggleDone(e) {
+    if (!e.target.matches('input')) return;
+    const elem = e.target;
+    const index = elem.dataset.index;
+    
+    plates[index].done = !plates[index].done;
+    localStorage.setItem('plates', JSON.stringify(plates));
+    populateMenu(plates, platesList);
+  }
+
+  addItems.addEventListener('submit', addPlate);
+  platesList.addEventListener('click', toggleDone);
+  populateMenu(plates, platesList);
 
 </script>
 
 
 </body>
 </html>
-
