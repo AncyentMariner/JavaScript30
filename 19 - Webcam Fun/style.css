@@ -25,10 +25,10 @@ html {
   clear: both;
 }
 
-.photo {
+/*.photo {
   width:100%;
   float:left;
-}
+}*/
 
 .player {
   position: absolute;
