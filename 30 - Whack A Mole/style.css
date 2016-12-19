@@ -67,3 +67,13 @@ h1 {
 .hole.up .mole {
   top:0;
 }
+
+.form-stuff {
+  padding: 1em;
+}
+
+#time-input > input[type="text"] {
+  width: 320px;
+  margin-top: 1em;
+  font-size: 1.5em;
+}
